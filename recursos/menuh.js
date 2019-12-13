@@ -30,6 +30,6 @@ stm_aix("p4i1","p0i1",[0,"Producto"],300,60);
 stm_aix("p4i2","p0i1",[0,"Empleado"],300,60);
 stm_aix("p4i3","p0i1",[0,"Proveedor"],300,60);
 stm_ep();
-stm_aix("p0i6","p0i1",[0,"Información","","",-1,-1,0,"../info/extra.php"],170,60);
+stm_aix("p0i6","p0i1",[0,"Información","","",-1,-1,0,"../info/electro.html"],170,60);
 stm_ep();
 stm_em();
