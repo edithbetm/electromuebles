@@ -1,7 +1,7 @@
 <?php
     $server = "localhost";
     $user = "root";
-    $pass = "atom1234";
+    $pass = "";
     $db = "electromuebles";
     $conexion = new mysqli($server, $user, $pass, $db);
     // Verificar si ha ocurrido un error al instanciar la conexión con la bd.
