@@ -9,19 +9,21 @@
         <title>Facturar</title>
         <link rel="stylesheet" href="estilos.css">
         <script src="factura.js" charset="utf-8"></script>
+		<script src="jspdf.min.js" charset="utf-8"></script>
+		<script src="jquery-3.4.1.min.js" charset="utf-8"></script>
     </head>
     <body>
-        <form class="formulario" action="generarFactura.php" method="post">
+        <form class="formulario">
             <p>Cliente a facturar:
-                <select class="" name="cliente">
+                <select id="selectCliente" class="" name="cliente">
                 <?php
-                    $consulta = "SELECT id_cliente as id, nombre FROM clientes;";
+                    $consulta = "SELECT telefono, nombre FROM clientes;";
 
                     if($resultado = mysqli_query($conexion, $consulta)) {
                         while($fila = mysqli_fetch_assoc($resultado)) {
-                            $id = $fila['id'];
+                            $telefono = $fila['telefono'];
                             $nombre = $fila['nombre'];
-                            $opcion = "<option value='".$id."'>".$nombre."</option>";
+                            $opcion = "<option value='".$telefono."'>".$nombre."</option>";
                             echo $opcion;
                         }
                     }
@@ -51,7 +53,7 @@
                                 $existencia = $fila['existencia'];
                                 $check = "<input type='checkbox' onchange='actualizarTotal(this);' value='".$id."'>";
                                 $cant = "<input id='1' type='number' disabled name='' value='1' max='".$existencia."' min='1' onchange='actualizarTotalPorCant(this);'>";
-                                echo "<tr id='row_".$id."'>";
+                                echo "<tr class='item' id='".$id."'>";
                                 echo "<td>".$codigo."</td>";
                                 echo "<td>".$descripcion."</td>";
                                 echo "<td>".$precio."</td>";
@@ -64,7 +66,8 @@
                 </tbody>
             </table>
             <p>
-                <input type="submit" name="" value="Generar factura">
+                <input type="button" onclick="generarFactura();" value="Generar factura">
+				<input type="submit" hidden name="" value="">
                 <button type="button" name="button">
                     <a href="../inicio/">Cancelar</a>
                 </button>
